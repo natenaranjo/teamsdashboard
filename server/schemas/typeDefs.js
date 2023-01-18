@@ -7,16 +7,17 @@ const typeDefs = gql `
         lastName: String
         emailAddress: String
         phoneNumber: String
-        zipCode: Number,
+        zipCode: Int,
     }
 
     type Query {
         members: [Member]
-        member(firstname: String!, lastName: String!, emailAddress: String!, phoneNumber: String!, zipCode: Number!): Member
+        member(firstname: String!, lastName: String!, emailAddress: String!, phoneNumber: String!, zipCode: Int!): Member
     }
 
     type Mutation {
-        addMember(firstName: String!, lastName: String!, emailAddress: String!, phoneNumber: String!, zipCode: Number!): Member
+        addMember(firstName: String!, lastName: String!, emailAddress: String!, phoneNumber: String!, zipCode: Int!): Member
+        editMember(memberId: ID!): Member
         removeMember(memberId: ID!): Member
     }
 `;
