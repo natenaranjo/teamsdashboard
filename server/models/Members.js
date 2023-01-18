@@ -6,7 +6,7 @@ class Member extends Model {}
 
 Member.init(
     {
-        id: {
+        memberId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
