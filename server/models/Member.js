@@ -1,9 +1,9 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes, model } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-const Member = sequelize.define('member', {
-        _id: {
+const Member = sequelize.define('Member', {
+        memberId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -50,7 +50,5 @@ const Member = sequelize.define('member', {
 (async () => {
     await sequelize.sync({ alter: true });
 })();
-
-return Member;
 
 module.exports = Member;

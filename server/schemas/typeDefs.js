@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql `
     type Member {
-        _id: ID!
+        memberId: Int!
         first_name: String
         last_name: String
         email_address: String
@@ -11,15 +11,14 @@ const typeDefs = gql `
     }
 
     type Query {
-        members: [Member]
-        member(first_name: String!, last_name: String!, email_address: String!, phone_number: String!, zipCcde: Int!): Member
+        member: [Member]
     }
 
     type Mutation {
         addMember(first_name: String!, last_name: String!, email_address: String!, phone_number: String!, zipcode: Int!): Member
-        editMember(_id: ID!): Member
-        removeMember(_id: ID!): Member
+        removeMember(id: Int!): Member
     }
+
 `;
 
 module.exports = typeDefs;

@@ -1,22 +1,31 @@
-const { Member } = require ('../models/Members');
+const Member = require ('../models/Member');
 
 const resolvers = {
     Query: {
-        members: async() => await Member(),
-    },
-
-    Mutation: {
-        addMember: async (parent, args) => {
-            const user = await Member.create(args);
-        },
-        editMember: async (parent, args) => {
-            const user = await Member.update(args);
-        },
-        removeMember: async (parent, args) => {
-            return Member.findOneAndDelete({ _id: ID });
+        member: async () => {
+            return Member.findAll();
         }
+        
     },
+ 
+    Mutation: {
+        addMember: async (_, args) => {
+            const member = await Member.create(args);
+            return member;
+        },
+        removeMember: async (_, { id }) => {
+            const member = await Member.findOne({
+                where: {
+                    memberId: id
+                }
+            });
+            await Member.destroy({where: {
+                memberId: id
+            }});
 
+            return member;
+        }
+    }
 };
 
 module.exports = resolvers;
