@@ -1,31 +1,20 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_MEMBERS } from '../../utils/queries';
-import { ADD_MEMBER, DELETE_MEMBER } from '../../utils/mutations';
-import AddMember from '../Dasboard/Modal/AddMember';
+import { DELETE_MEMBER } from '../../utils/mutations';
+import AddModal from './Modal/AddModal';
 
-const trails = [
-  {
-    first_name: 'Jane',
-    last_name: 'Doe',
-    email_address: 'janedoe@gmail.com',
-    phone_number: '713-359-4561',
-    zipcode: '78654',
-  },
-  {
-    first_name: 'John',
-    last_name: 'Doe',
-    email_address: 'johndoe@outlook.com',
-    phone_number: '251-432-9867',
-    zipcode: '78655',
-  }
-];
 
 const MainDash = () => {
   const { loading, data } = useQuery(QUERY_MEMBERS);
   const members = data?.member || [];
 
+  const [show, setShow] = useState(false);
+
   const [deleteMember] = useMutation(DELETE_MEMBER);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleDeleteMember = async memberId => {
     try {
@@ -42,6 +31,7 @@ const MainDash = () => {
 
   return (
     <div className='container-fluid'>
+ 
       <div className='d-flex flex-row justify-content-center align-items-center text-center gap-4 p-4'>
           <div className='cols-md-3 w-100'>
             <div className='card shadow'>
@@ -83,9 +73,13 @@ const MainDash = () => {
                 <input type='search' className=' rounded' />
               </div>
               <div>
-                <button type="button" className="btn btn-light shadow" >
+                <button 
+                  type="button"
+                  onClick={() => setShow(true)}
+                  className="btn btn-light shadow">
                     Add Member
                 </button>
+                {show && <AddModal setShow={setShow} />}
               </div>
             </div>
           </div>
@@ -124,8 +118,6 @@ const MainDash = () => {
           </div>
         </div>
       </div>
-
-
     </div>
   )
 }
