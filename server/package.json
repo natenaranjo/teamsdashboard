@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon",
-    "seed": "node seeders/seed.js"
+    "seed": "node seeds/seed.js"
   },
   "keywords": [],
   "author": "",
@@ -16,10 +16,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "graphql": "^16.6.0",
-    "mysql": "^2.18.1",
     "mysql2": "^3.0.1",
     "sequelize": "^6.28.0",
-    "sequelize-auto": "^0.8.8",
     "sequelize-cli": "^6.5.2"
   }
 }

@@ -2,12 +2,7 @@ const { Member } = require ('../models/Members');
 
 const resolvers = {
     Query: {
-        members: async () => {
-            return Member.find();
-        },
-        member: async (parent, { firstName, lastName, emailAddress, phoneNumber, zipCode }) => {
-            return User.findOne({ firstName, lastName, emailAddress, phoneNumber, zipCode});
-        },
+        members: async() => await Member(),
     },
 
     Mutation: {
@@ -18,7 +13,7 @@ const resolvers = {
             const user = await Member.update(args);
         },
         removeMember: async (parent, args) => {
-            return Member.findOneAndDelete({ _id: memberId });
+            return Member.findOneAndDelete({ _id: ID });
         }
     },
 

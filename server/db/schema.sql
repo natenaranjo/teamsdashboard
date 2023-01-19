@@ -1,5 +1,5 @@
 -- Drop Database
-    DROP DATABASE IF EXISTS teams_db;
+    DROP DATABASE IF EXISTS TeamsDB;
 
 -- Create Database
-    CREATE DATABASE teams_db;
+    CREATE DATABASE TeamsDB;

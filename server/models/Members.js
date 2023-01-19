@@ -1,28 +1,25 @@
-const { Model, DataTypes } = require('sequelize');
+const { Sequelize, Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class Member extends Model {}
-
-Member.init(
-    {
-        memberId: {
+const Member = sequelize.define('member', {
+        _id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
         },
-        firstName: {
+        first_name: {
             type: DataTypes.STRING,
             allowNull: false,
             required: true,
         },
-        lastName: {
+        last_name: {
             type: DataTypes.STRING,
             allowNull: false,
             required: true,
         },
-        emailAddress: {
+        email_address: {
             type: DataTypes.STRING,
             allowNull: false,
             required: true,
@@ -30,12 +27,12 @@ Member.init(
                 isEmail: true,
             }
         },
-        phoneNumber: {
+        phone_number: {
             type: DataTypes.STRING,
             allowNull: false,
             required: true,
         },
-        zipCode: {
+        zipcode: {
             type: DataTypes.INTEGER,
             allowNull: false,
             required: true,
@@ -49,5 +46,11 @@ Member.init(
         modelName: 'member',
     },
 );
+
+(async () => {
+    await sequelize.sync({ alter: true });
+})();
+
+return Member;
 
 module.exports = Member;
