@@ -3,12 +3,12 @@ import React from 'react'
 const Sidebar = () => {
   return (
     <nav id="sidebar">
-        <div class="sidebar-header">
+        <div className="sidebar-header">
             <h3 className='text-center'>Admin Panel</h3>
         </div>
 
-        <ul class="list-unstyled components">
-            <li class="active">
+        <ul className="list-unstyled components">
+            <li className="active">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" className='link'>Home</a>
             </li>
             <li>
