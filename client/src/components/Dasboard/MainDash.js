@@ -1,11 +1,44 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_MEMBERS } from '../../utils/queries';
-import { ADD_MEMBER } from '../../utils/mutations';
+import { ADD_MEMBER, DELETE_MEMBER } from '../../utils/mutations';
 import AddMember from '../Dasboard/Modal/AddMember';
+
+const trails = [
+  {
+    first_name: 'Jane',
+    last_name: 'Doe',
+    email_address: 'janedoe@gmail.com',
+    phone_number: '713-359-4561',
+    zipcode: '78654',
+  },
+  {
+    first_name: 'John',
+    last_name: 'Doe',
+    email_address: 'johndoe@outlook.com',
+    phone_number: '251-432-9867',
+    zipcode: '78655',
+  }
+];
 
 const MainDash = () => {
   const { loading, data } = useQuery(QUERY_MEMBERS);
+  const members = data?.member || [];
+
+  const [deleteMember] = useMutation(DELETE_MEMBER);
+
+  const handleDeleteMember = async memberId => {
+    try {
+      const { data } = await deleteMember({
+        variables: {
+          memberId,
+        },
+      });
+      window.location.reload(false);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
     <div className='container-fluid'>
@@ -65,52 +98,27 @@ const MainDash = () => {
                   <th scope='col'>Email Address</th>
                   <th scope='col'>Phone Number</th>
                   <th scope='col'>Zipcode</th>
-                  <th scope='col'>Tools</th>
+                  <th scope='col'>Options</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>markotto@example.com</td>
-                  <td>999-999-9999</td>
-                  <td>99999</td>
-                  <td>
-                    <button type='button' className='btn w-25 h-25 p-0 m-0'>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="bi bi-trash3" viewBox="0 0 16 16">
-                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Jane</td>
-                  <td>Doe</td>
-                  <td>janedoe@example.com</td>
-                  <td>999-999-9999</td>
-                  <td>99999</td>
-                  <td>
-                    <button type='button' className='btn w-25 h-25 p-0 m-0'>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="bi bi-trash3" viewBox="0 0 16 16">
-                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>John</td>
-                  <td>Watts</td>
-                  <td>johnwatts@example.com</td>
-                  <td>999-999-9999</td>
-                  <td>99999</td>
-                  <td>
-                    <button type='button' className='btn w-25 h-25 p-0 m-0'>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="bi bi-trash3" viewBox="0 0 16 16">
-                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
+                {members.map(Member => (
+                  <tr key={Member.memberId}>
+                    <td>{Member.first_name}</td>
+                    <td>{Member.last_name}</td>
+                    <td>{Member.email_address}</td>
+                    <td>{Member.phone_number}</td>
+                    <td>{Member.zipcode}</td>
+                    <td>
+                      <button 
+                        type='button'
+                        onClick={() => handleDeleteMember(Member.memberId)}
+                        className='btn text-danger hover:text-primary p-0 m-0'>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

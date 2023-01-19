@@ -13,7 +13,7 @@ const resolvers = {
             const member = await Member.create(args);
             return member;
         },
-        removeMember: async (_, { id }) => {
+        deleteMember: async (_, { id }) => {
             const member = await Member.findOne({
                 where: {
                     memberId: id

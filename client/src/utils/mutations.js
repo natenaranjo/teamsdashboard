@@ -11,3 +11,11 @@ export const ADD_MEMBER = gql `
         }
     }
 `;
+
+export const DELETE_MEMBER = gql `
+    mutation deleteMember($memberId: Int!){
+        deleteMember(id: $memberId){
+            id: memberId
+        }
+    }
+`;
