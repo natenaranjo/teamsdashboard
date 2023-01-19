@@ -69,3 +69,8 @@ ul ul a {
   padding-left: 30px !important;
   background: #6d7fcc;
 }
+
+#member-table-header {
+  background-color: #7386D5;
+  color: #fff;
+}

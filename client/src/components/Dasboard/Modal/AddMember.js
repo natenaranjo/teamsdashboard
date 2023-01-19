@@ -10,7 +10,7 @@ const AddMember = () => {
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
-                    <form onSubmit={handleSubmit} className="row g-3">
+                    <form className="row g-3">
                         <div className="col-md-6">
                         <label for="inputEmail4" className="form-label">First Name</label>
                         <input type="text" className="form-control" id="inputEmail4" placeholder='Jane' required />
