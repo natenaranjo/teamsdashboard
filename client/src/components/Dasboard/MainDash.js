@@ -38,31 +38,28 @@ const MainDash = () => {
   return (
     <div className='container-fluid'>
  
-      <div className='d-flex flex-row justify-content-center align-items-center text-center gap-4 p-4'>
-          <div className='cols-md-3 w-100'>
+      <div className='d-flex flex-row justify-content-center align-items-center text-center gap-4 p-5'>
+          <div className='cols-md-3 w-100 h-100'>
             <div className='card shadow'>
               <div className='card-body'>
-                <h5 className='card-title'>Card Title</h5>
-                <h6 className='card-subtitle'>Car subtitle</h6>
-                <p className='card-text'>test</p>
+                <h5 className='card-title'>Add Member</h5>
+                <h6 className='card-subtitle'>Click the "Add Member" button and fill out all the input fields</h6>
               </div>
             </div>
           </div>
           <div className='cols-md-3 w-100'>
           <div className='card shadow'>
               <div className='card-body'>
-                <h5 className='card-title'>Card Title</h5>
-                <h6 className='card-subtitle'>Car subtitle</h6>
-                <p className='card-text'>test</p>
+                <h5 className='card-title'>Search Tips:</h5>
+                <h6 className='card-subtitle'>In the search box on the table, just start typing in the letters or number of the value you want to search.</h6>
               </div>
             </div>
           </div>
           <div className='cols-md-3 w-100'>
           <div className='card shadow'>
               <div className='card-body'>
-                <h5 className='card-title'>Card Title</h5>
-                <h6 className='card-subtitle'>Car subtitle</h6>
-                <p className='card-text'>test</p>
+                <h5 className='card-title'>Thank You</h5>
+                <h6 className='card-subtitle'>This was built with React, Node, Express, Apollo, GraphQL, Sequelize, MySQL</h6>
               </div>
             </div>
           </div>
