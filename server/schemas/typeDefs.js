@@ -7,7 +7,7 @@ const typeDefs = gql `
         last_name: String
         email_address: String
         phone_number: String
-        zipcode: Int,
+        zipcode: String,
     }
 
     type Query {
@@ -15,7 +15,7 @@ const typeDefs = gql `
     }
 
     type Mutation {
-        addMember(first_name: String!, last_name: String!, email_address: String!, phone_number: String!, zipcode: Int!): Member
+        addMember(first_name: String!, last_name: String!, email_address: String!, phone_number: String!, zipcode: String!): Member
         deleteMember(id: Int!): Member
     }
 

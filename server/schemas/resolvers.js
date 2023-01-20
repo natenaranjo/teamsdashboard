@@ -9,8 +9,8 @@ const resolvers = {
     },
  
     Mutation: {
-        addMember: async (_, args) => {
-            const member = await Member.create(args);
+        addMember: async (_, first_name, last_name, email_address, phone_number, zipcode) => {
+            const member = await Member.create(first_name, last_name, email_address, phone_number, zipcode);
             return member;
         },
         deleteMember: async (_, { id }) => {

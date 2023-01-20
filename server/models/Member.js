@@ -33,7 +33,7 @@ const Member = sequelize.define('Member', {
             required: true,
         },
         zipcode: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             required: true,
         }
