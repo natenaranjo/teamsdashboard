@@ -139,11 +139,11 @@ const AddModal = ({ show, setShow }) => {
               />
             </Form.Group>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
+              <Button variant="danger" onClick={handleClose}>
+                Cancel
               </Button>
-              <Button type='submit' variant="primary" onClick={handleFormSubmit}>
-                Save Changes
+              <Button type='submit' variant="success" onClick={handleFormSubmit}>
+                Add Member
               </Button>
             </Modal.Footer>
           </Form>
