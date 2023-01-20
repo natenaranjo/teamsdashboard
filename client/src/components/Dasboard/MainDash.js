@@ -1,20 +1,26 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client';
-import { QUERY_MEMBERS } from '../../utils/queries';
+import { QUERY_FILTERS } from '../../utils/queries';
 import { DELETE_MEMBER } from '../../utils/mutations';
 import AddModal from './Modal/AddModal';
 
 
 const MainDash = () => {
-  const { loading, data } = useQuery(QUERY_MEMBERS);
-  const members = data?.member || [];
+  const [search, setSearch] = useState('');
+  const { data, refetch } = useQuery(QUERY_FILTERS, { variables: {search}});
+  const members = data?.member_search || [];
 
   const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const [deleteMember] = useMutation(DELETE_MEMBER);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const onSearch = ( value ) => {
+    setSearch(value);
+
+    refetch({ search: value });
+  }
 
   const handleDeleteMember = async memberId => {
     try {
@@ -69,8 +75,11 @@ const MainDash = () => {
               <div>
                 <h4>Team Members</h4>
               </div>
-              <div>
-                <input type='search' className=' rounded' />
+              <div className='w-50'>
+                <input 
+                  type='search' 
+                  onChange={(e) => onSearch(e.target.value)}
+                  className='w-100 text-center rounded' />
               </div>
               <div>
                 <button 

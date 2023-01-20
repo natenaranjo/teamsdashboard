@@ -11,7 +11,9 @@ const typeDefs = gql `
     }
 
     type Query {
-        member: [Member]
+        member: [Member],
+        member_search(search: String): [Member]
+
     }
 
     type Mutation {

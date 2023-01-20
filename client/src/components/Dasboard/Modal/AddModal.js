@@ -45,7 +45,6 @@ const AddModal = ({ show, setShow }) => {
 
     const handleFormSubmit = async event => {
         event.preventDefault();
-        console.log(formState);
 
         try {
             const { data } = await addMember({
@@ -63,6 +62,7 @@ const AddModal = ({ show, setShow }) => {
             console.error(e);
         };
         setShow(false);
+        window.location.reload(true);
     }
 
     return (
@@ -71,7 +71,7 @@ const AddModal = ({ show, setShow }) => {
           <Modal.Title>Add Member</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>First Name</Form.Label>
               <Form.Control
@@ -142,7 +142,7 @@ const AddModal = ({ show, setShow }) => {
               <Button variant="danger" onClick={handleClose}>
                 Cancel
               </Button>
-              <Button type='submit' variant="success" onClick={handleFormSubmit}>
+              <Button type='submit' variant="success">
                 Add Member
               </Button>
             </Modal.Footer>
